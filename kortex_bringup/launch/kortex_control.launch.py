@@ -60,6 +60,7 @@ def launch_setup(context, *args, **kwargs):
     robot_type = LaunchConfiguration("robot_type")
     robot_ip = LaunchConfiguration("robot_ip")
     dof = LaunchConfiguration("dof")
+    vision = LaunchConfiguration("vision")
     # General arguments
     controllers_file = LaunchConfiguration("controllers_file")
     description_package = LaunchConfiguration("description_package")
@@ -103,6 +104,9 @@ def launch_setup(context, *args, **kwargs):
             " ",
             "dof:=",
             dof,
+            " ",
+            "vision:=",
+            vision,
             " ",
             "prefix:=",
             prefix,
@@ -253,6 +257,8 @@ def generate_launch_description():
         )
     )
     declared_arguments.append(DeclareLaunchArgument("dof", description="DoF of robot."))
+    declared_arguments.append(DeclareLaunchArgument("vision", description="Vision system type.",
+                                                    default_value="true"))
     declared_arguments.append(
         DeclareLaunchArgument(
             "robot_ip", description="IP address by which the robot can be reached."

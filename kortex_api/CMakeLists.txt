@@ -4,7 +4,7 @@ include(FetchContent)
 FetchContent_Declare(
   kinova_binary_api
   URL https://artifactory.kinovaapps.com/artifactory/generic-public/kortex/API/2.7.0/linux_aarch64_gcc_7.4.zip
-  URL_HASH MD5=a6c96adc053d7b2095676f009fde1a44
+  URL_HASH MD5=93a9354612acfcf2b2d19f5715b3696d
 )
 
 FetchContent_MakeAvailable(kinova_binary_api)

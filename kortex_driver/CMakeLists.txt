@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.14)
 include(FetchContent)
 FetchContent_Declare(
   kinova_binary_api
-  URL https://artifactory.kinovaapps.com/artifactory/generic-public/kortex/API/2.7.0/linux_aarch64_gcc_7.4.zip
-  URL_HASH MD5=93a9354612acfcf2b2d19f5715b3696d
+  URL https://artifactory.kinovaapps.com/artifactory/generic-public/kortex/API/2.6.0/linux_aarch64_gcc_5.4.zip
+  URL_HASH MD5=052fc8f4d9901c78c1b4287bd1de71e0
 )
 FetchContent_MakeAvailable(kinova_binary_api)
 
@@ -28,7 +28,7 @@ find_package(pluginlib REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(kortex_api REQUIRED)
 
-set(API_URL https://artifactory.kinovaapps.com/artifactory/generic-public/kortex/API/2.7.0/linux_aarch64_gcc_7.4.zip)
+set(API_URL https://artifactory.kinovaapps.com/artifactory/generic-public/kortex/API/2.6.0/linux_aarch64_gcc_5.4.zip)
 
 # CMake does not allow IMPORTED libraries to be installed
 # The package kortex_api will download and setup the include directories

@@ -28,7 +28,7 @@ find_package(pluginlib REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(kortex_api REQUIRED)
 
-set(API_URL https://artifactory.kinovaapps.com:443/artifactory/generic-public/kortex/API/2.5.0/linux_armv7_jetson_gcc.zip)
+set(API_URL https://artifactory.kinovaapps.com/artifactory/generic-public/kortex/API/2.7.0/linux_aarch64_gcc_7.4.zip)
 
 # CMake does not allow IMPORTED libraries to be installed
 # The package kortex_api will download and setup the include directories

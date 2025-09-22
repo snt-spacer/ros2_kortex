@@ -3,7 +3,7 @@ include(FetchContent)
 #include(ExternalProject)
 FetchContent_Declare(
   kinova_binary_api
-  URL https://artifactory.kinovaapps.com:443/artifactory/generic-public/kortex/API/2.5.0/linux_armv7_jetson_gcc.zip
+  URL https://artifactory.kinovaapps.com/artifactory/generic-public/kortex/API/2.7.0/linux_aarch64_gcc_7.4.zip
   URL_HASH MD5=a6c96adc053d7b2095676f009fde1a44
 )
 
@@ -18,7 +18,7 @@ project(kortex_api)
 # string(REPLACE "_" "-" URL_PROCESSOR ${CMAKE_SYSTEM_PROCESSOR}) # x86_64 -> x86-64
 # string(TOLOWER ${CMAKE_SYSTEM_NAME} URL_OS) # Linux -> linux
 
-set(API_URL https://artifactory.kinovaapps.com:443/artifactory/generic-public/kortex/API/2.5.0/linux_armv7_jetson_gcc.zip)
+set(API_URL https://artifactory.kinovaapps.com/artifactory/generic-public/kortex/API/2.7.0/linux_aarch64_gcc_7.4.zip)
 
 #ExternalProject_Add(kinova_binary_api
 #  URL ${API_URL}

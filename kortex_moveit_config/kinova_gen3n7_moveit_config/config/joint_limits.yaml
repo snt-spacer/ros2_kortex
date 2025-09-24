@@ -1,7 +1,7 @@
 # Reduced limits to make the robot safer
 
-default_velocity_scaling_factor: 0.1
-default_acceleration_scaling_factor: 0.1
+default_velocity_scaling_factor: 0.5 #could be 0.05?
+default_acceleration_scaling_factor: 0.5
 
 joint_limits:
   joint_1:

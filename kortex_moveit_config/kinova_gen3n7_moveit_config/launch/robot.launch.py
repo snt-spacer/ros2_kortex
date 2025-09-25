@@ -102,7 +102,7 @@ def launch_setup(context, *args, **kwargs):
             "dof:=7",
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
+    robot_description = {"/robot_description": robot_description_content}
 
     # ros2_control using FakeSystem as hardware
     ros2_controllers_path = os.path.join(

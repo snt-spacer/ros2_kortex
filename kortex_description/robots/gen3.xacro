@@ -57,7 +57,7 @@
         sim_isaac="$(arg sim_isaac)"
         use_external_cable="$(arg use_external_cable)"
         initial_positions="${xacro.load_yaml(initial_positions_file)}" >
-        <origin xyz="0 0 0" rpy="0 0 0" />  <!-- position robot in the world -->
+        <origin xyz="0 0 0" rpy="0 0.7853982 0" />  <!-- position robot in the world -->
     </xacro:load_robot>
 
 </robot>

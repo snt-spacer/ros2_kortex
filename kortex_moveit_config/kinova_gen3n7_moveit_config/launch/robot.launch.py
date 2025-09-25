@@ -15,7 +15,8 @@
 import os
 
 from launch import LaunchDescription
-from launch.substitutions import LaunchConfiguration
+from launch_ros.substitutions import FindPackageShare
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Command, FindExecutable
 from launch.actions import (
     DeclareLaunchArgument,
     OpaqueFunction,
@@ -86,6 +87,23 @@ def launch_setup(context, *args, **kwargs):
         ],
     )
 
+    # Load robot description
+    this_pkg = FindPackageShare("kortex_description")
+    description_file = PathJoinSubstitution([this_pkg, "robots", "gen3.xacro"])
+    robot_description_content = Command(
+        [
+            FindExecutable(name="xacro"),
+            " ",
+            description_file,
+            " ",
+            "robot_ip:=",
+            robot_ip,
+            " ",
+            "dof:=7",
+        ]
+    )
+    robot_description = {"robot_description": robot_description_content}
+
     # ros2_control using FakeSystem as hardware
     ros2_controllers_path = os.path.join(
         get_package_share_directory("kinova_gen3n7_moveit_config"),
@@ -95,9 +113,11 @@ def launch_setup(context, *args, **kwargs):
     ros2_control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[ros2_controllers_path],
+        parameters=[robot_description, ros2_controllers_path],
         remappings=[
             ("/controller_manager/robot_description", "/robot_description"),
+            ('motion_control_handle/target_frame', 'target_frame'),
+            ('cartesian_motion_controller/target_frame', 'target_frame'),
         ],
         output="both",
     )
@@ -119,6 +139,12 @@ def launch_setup(context, *args, **kwargs):
         executable="spawner",
         arguments=["fault_controller", "-c", "/controller_manager"],
         condition=UnlessCondition(use_fake_hardware),
+    )
+
+    cartesian_motion_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["cartesian_motion_controller", "--inactive", "-c", "/controller_manager"],
     )
 
     # rviz with moveit configuration

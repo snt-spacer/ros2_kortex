@@ -102,7 +102,7 @@ def launch_setup(context, *args, **kwargs):
             "dof:=7",
         ]
     )
-    robot_description = {"/robot_description": robot_description_content}
+    robot_description = {"robot_description": robot_description_content}
 
     # ros2_control using FakeSystem as hardware
     ros2_controllers_path = os.path.join(
@@ -115,7 +115,7 @@ def launch_setup(context, *args, **kwargs):
         executable="ros2_control_node",
         parameters=[robot_description, ros2_controllers_path],
         remappings=[
-            ("/controller_manager/robot_description", "/robot_description"),
+            ("/controller_manager/robot_description", "robot_description"),
             ('motion_control_handle/target_frame', 'target_frame'),
             ('cartesian_motion_controller/target_frame', 'target_frame'),
         ],

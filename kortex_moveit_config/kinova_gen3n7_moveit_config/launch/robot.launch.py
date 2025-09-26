@@ -127,7 +127,7 @@ def launch_setup(context, *args, **kwargs):
     robot_traj_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["joint_trajectory_controller", "-c", "/controller_manager"],
+        arguments=["joint_trajectory_controller", "--inactive", "-c", "/controller_manager"],
     )
 
     robot_pos_controller_spawner = Node(
@@ -146,7 +146,7 @@ def launch_setup(context, *args, **kwargs):
     cartesian_motion_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["cartesian_motion_controller", "--inactive", "-c", "/controller_manager"],
+        arguments=["cartesian_motion_controller", "-c", "/controller_manager"],
     )
 
     # rviz with moveit configuration
@@ -156,7 +156,7 @@ def launch_setup(context, *args, **kwargs):
     # )
     rviz_config_file = (
         get_package_share_directory("kinova_gen3n7")
-        + "/config/cartisian_controller.rviz"
+        + "/launch/config/cartesian_controller.rviz"
     )
     rviz_node = Node(
         package="rviz2",

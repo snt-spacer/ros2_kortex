@@ -115,7 +115,7 @@ def launch_setup(context, *args, **kwargs):
     ros2_control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[robot_description, ros2_controllers_path],
+        parameters=[moveit_config.robot_description, ros2_controllers_path],
         remappings=[
             ("/controller_manager/robot_description", "robot_description"),
             ('motion_control_handle/target_frame', 'target_frame'),

@@ -203,6 +203,7 @@ def launch_setup(context, *args, **kwargs):
         fault_controller_spawner,
         move_group_node,
         static_tf,
+        cartesian_motion_controller_spawner,
     ]
 
     return nodes_to_start

@@ -55,6 +55,7 @@ twist_controller:
 
 cartesian_motion_controller:
   ros__parameters:
+    ik_solver: "damped_least_squares"
 
     # See the cartesian_compliance_controller
     end_effector_link: "end_effector_link"

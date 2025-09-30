@@ -45,23 +45,6 @@ def launch_setup(context, *args, **kwargs):
         "vision": "true",
     }
 
-    # Load robot description
-    this_pkg = FindPackageShare("kortex_description")
-    description_file = PathJoinSubstitution([this_pkg, "robots", "gen3.xacro"])
-    robot_description_content = Command(
-        [
-            FindExecutable(name="xacro"),
-            " ",
-            description_file,
-            " ",
-            "robot_ip:=",
-            robot_ip,
-            " ",
-            "dof:=7",
-        ]
-    )
-    robot_description = {"robot_description": robot_description_content}
-
     moveit_config = (
         MoveItConfigsBuilder("gen3", package_name="kinova_gen3n7_moveit_config")
         .robot_description(mappings=launch_arguments)
@@ -112,6 +95,23 @@ def launch_setup(context, *args, **kwargs):
         "config",
         "ros2_controllers.yaml",
     )
+
+    # Load robot description
+    this_pkg = FindPackageShare("kortex_description")
+    description_file = PathJoinSubstitution([this_pkg, "robots", "gen3.xacro"])
+    robot_description_content = Command(
+        [
+            FindExecutable(name="xacro"),
+            " ",
+            description_file,
+            " ",
+            "robot_ip:=",
+            robot_ip,
+            " ",
+            "dof:=7",
+        ]
+    )
+    robot_description = {"robot_description": robot_description_content}
     ros2_control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",

@@ -452,11 +452,11 @@
         xyz="0 0 0" />
     </joint>
     <!-- Scoop Link -->
-    <link name="${prefix}spacer_scoop_link">
+    <!-- <link name="${prefix}spacer_scoop_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find kortex_description)/arms/gen3/${dof}dof/meshes/spacer_scoop.stl" />
+          <mesh filename="file://$(find kortex_description)/arms/gen3/${dof}dof/meshes/spacer_scoop.STL" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="">
           <color rgba="0.75294 0.75294 0.75294 1" />
@@ -465,7 +465,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find kortex_description)/arms/gen3/${dof}dof/meshes/spacer_scoop.stl" />
+          <mesh filename="file://$(find kortex_description)/arms/gen3/${dof}dof/meshes/spacer_scoop.STL" />
         </geometry>
       </collision>
     </link>
@@ -479,7 +479,7 @@
         link="${prefix}spacer_scoop_link" />
       <axis
         xyz="0 0 0" />
-    </joint>
+    </joint> -->
     <xacro:if value="${vision}">
       <!-- sim camera needs to be rotated which might not apply to built in vision module -->
       <xacro:if value="${sim_ignition}">

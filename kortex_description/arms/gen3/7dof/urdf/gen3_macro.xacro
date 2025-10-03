@@ -452,7 +452,7 @@
         xyz="0 0 0" />
     </joint>
     <!-- Scoop Link -->
-    <!-- <link name="${prefix}spacer_scoop_link">
+    <link name="${prefix}spacer_scoop_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -479,7 +479,7 @@
         link="${prefix}spacer_scoop_link" />
       <axis
         xyz="0 0 0" />
-    </joint> -->
+    </joint>
     <xacro:if value="${vision}">
       <!-- sim camera needs to be rotated which might not apply to built in vision module -->
       <xacro:if value="${sim_ignition}">

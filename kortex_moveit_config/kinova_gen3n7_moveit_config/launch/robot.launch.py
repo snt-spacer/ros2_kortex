@@ -120,6 +120,9 @@ def launch_setup(context, *args, **kwargs):
             ("/controller_manager/robot_description", "robot_description"),
             ('motion_control_handle/target_frame', 'target_frame'),
             ('cartesian_motion_controller/target_frame', 'target_frame'),
+            ('cartesian_compliance_controller/target_frame', 'target_frame'),
+            ('bota_ft_sensor/wrench', 'cartesian_compliance_controller/ft_sensor_wrench'),
+            ('bota_ft_sensor/wrench', 'cartesian_force_controller/ft_sensor_wrench'),
         ],
         output="both",
     )
@@ -147,6 +150,18 @@ def launch_setup(context, *args, **kwargs):
         package="controller_manager",
         executable="spawner",
         arguments=["cartesian_motion_controller", "-c", "/controller_manager"],
+    )
+    
+    cartesian_compliance_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["cartesian_compliance_controller", "--inactive", "-c", "/controller_manager"],
+    )
+    
+    cartesian_force_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["cartesian_force_controller", "--inactive", "-c", "/controller_manager"],
     )
 
     # rviz with moveit configuration
@@ -204,6 +219,8 @@ def launch_setup(context, *args, **kwargs):
         move_group_node,
         static_tf,
         cartesian_motion_controller_spawner,
+        cartesian_compliance_controller_spawner,
+        cartesian_force_controller_spawner,
     ]
 
     return nodes_to_start

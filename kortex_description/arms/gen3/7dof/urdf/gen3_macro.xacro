@@ -451,12 +451,36 @@
       <axis
         xyz="0 0 0" />
     </joint>
-
+    <!-- Kinova to Bota adapt-->
+    <link name="kinova_bota_adapt_link" >
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find kortex_description)/arms/gen3/${dof}dof/meshes/kinova_bota_adapt.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find kortex_description)/arms/gen3/${dof}dof/meshes/kinova_bota_adapt.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="kinova_bota_adapt_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${prefix}end_effector_link" />
+      <child link="kinova_bota_adapt_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+    <!-- Bota sensor -->
     <link name="robot_mounting_link" />
     <joint name="robot_mounting_joint" type="fixed">
-        <parent link="${prefix}end_effector_link" />
+        <parent link="kinova_bota_adapt_link" />
         <child link = "robot_mounting_link" />
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+        <origin xyz="0.0 0.0 0.016" rpy="0.0 0.0 0.0" />
     </joint>
     <xacro:arg name="bota_ft_sensor_link_name" default="bota_ft_sensor" />
     <!-- SensONE GEN0 EtherCAT -->
@@ -465,10 +489,34 @@
     <joint name="robot_mounting_link_to_bota_ft_sensor" type="fixed">
         <parent link="robot_mounting_link" />
         <child link = "$(arg bota_ft_sensor_link_name)_mounting" />
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+        <origin xyz="0 0 0" rpy="0.0 0.0 ${-PI}" />
+    </joint>
+    <!-- Bota to Scoop adapt -->
+    <link name="bota_scoop_adapt_link" >
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find kortex_description)/arms/gen3/${dof}dof/meshes/bota_scoop_adapt.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find kortex_description)/arms/gen3/${dof}dof/meshes/bota_scoop_adapt.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="bota_scoop_adapt_joint" type="fixed">
+      <origin xyz="0 0 0.035" rpy="0 0 0" />
+      <parent link="$(arg bota_ft_sensor_link_name)_mounting" />
+      <child link="bota_scoop_adapt_link" />
+      <axis xyz="0 0 0" />
     </joint>
     <!-- Scoop Link -->
-    <!-- <link name="${prefix}spacer_scoop_link">
+    <link name="${prefix}spacer_scoop_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -485,17 +533,12 @@
         </geometry>
       </collision>
     </link>
-    <joint
-      name="${prefix}spacer_scoop_joint"
-      type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 ${-PI}" />
-      <parent
-        link="${prefix}end_effector_link" />
-      <child
-        link="${prefix}spacer_scoop_link" />
-      <axis
-        xyz="0 0 0" />
-    </joint> -->
+    <joint name="${prefix}spacer_scoop_joint" type="fixed">
+      <origin xyz="0 0 0.018" rpy="0 0 0" />
+      <parent link="bota_scoop_adapt_link" />
+      <child link="${prefix}spacer_scoop_link" />
+      <axis xyz="0 0 0" />
+    </joint>
     <xacro:if value="${vision}">
       <!-- sim camera needs to be rotated which might not apply to built in vision module -->
       <xacro:if value="${sim_ignition}">

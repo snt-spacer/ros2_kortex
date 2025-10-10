@@ -116,7 +116,7 @@ cartesian_compliance_controller:
     # tool.  When you specify a target_wrench, i.e. some additional forces that
     # your robot should apply to its environment, that target_wrench gets
     # applied in this frame.
-    end_effector_link: "bota_ft_sensor_wrench"
+    end_effector_link: "spacer_scoop_link"
 
     # This is usually the link directly before the first actuated joint.  All
     # controllers will build a kinematic chain from this link up to
@@ -137,7 +137,7 @@ cartesian_compliance_controller:
     # downward pushing forces without generating unwanted offset moments.
     # On the other hand, an application could benefit from yielding a little in
     # the robot's wrist while drawing a line on a surface with a pen.
-    compliance_ref_link: "bota_ft_sensor_wrench"
+    compliance_ref_link: "spacer_scoop_link"
 
     joints:
       - joint_1

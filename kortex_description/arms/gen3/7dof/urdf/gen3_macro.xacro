@@ -510,8 +510,8 @@
       </collision>
     </link>
     <joint name="bota_scoop_adapt_joint" type="fixed">
-      <origin xyz="0 0 0.035" rpy="0 0 0" />
-      <parent link="$(arg bota_ft_sensor_link_name)_mounting" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="$(arg bota_ft_sensor_link_name)_wrench" />
       <child link="bota_scoop_adapt_link" />
       <axis xyz="0 0 0" />
     </joint>

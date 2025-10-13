@@ -484,7 +484,7 @@
     </joint>
     <xacro:arg name="bota_ft_sensor_link_name" default="bota_ft_sensor" />
     <!-- SensONE GEN0 EtherCAT -->
-    <xacro:include filename="$(find kinova_gen3n7)/bota_urdf/BFT_SENS_ECAT_M8.urdf.xacro" />
+    <xacro:include filename="file://$(find kinova_gen3n7)/bota_urdf/BFT_SENS_ECAT_M8.urdf.xacro" />
     <xacro:BFT_SENS_ECAT_M8 prefix="$(arg bota_ft_sensor_link_name)" />  
     <joint name="robot_mounting_link_to_bota_ft_sensor" type="fixed">
         <parent link="robot_mounting_link" />

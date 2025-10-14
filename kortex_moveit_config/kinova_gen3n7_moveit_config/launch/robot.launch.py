@@ -152,17 +152,17 @@ def launch_setup(context, *args, **kwargs):
         arguments=["cartesian_motion_controller", "-c", "/controller_manager"],
     )
     
-    cartesian_compliance_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["cartesian_compliance_controller", "--inactive", "-c", "/controller_manager"],
-    )
+    # cartesian_compliance_controller_spawner = Node(
+    #     package="controller_manager",
+    #     executable="spawner",
+    #     arguments=["cartesian_compliance_controller", "--inactive", "-c", "/controller_manager"],
+    # )
     
-    cartesian_force_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["cartesian_force_controller", "--inactive", "-c", "/controller_manager"],
-    )
+    # cartesian_force_controller_spawner = Node(
+    #     package="controller_manager",
+    #     executable="spawner",
+    #     arguments=["cartesian_force_controller", "--inactive", "-c", "/controller_manager"],
+    # )
 
     # rviz with moveit configuration
     # rviz_config_file = (
@@ -219,8 +219,8 @@ def launch_setup(context, *args, **kwargs):
         move_group_node,
         static_tf,
         cartesian_motion_controller_spawner,
-        cartesian_compliance_controller_spawner,
-        cartesian_force_controller_spawner,
+        # cartesian_compliance_controller_spawner,
+        # cartesian_force_controller_spawner,
     ]
 
     return nodes_to_start

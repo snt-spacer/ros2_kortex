@@ -452,7 +452,7 @@
         xyz="0 0 0" />
     </joint>
     <!-- Kinova to Bota adapt-->
-    <link name="kinova_bota_adapt_link" >
+    <!-- <link name="kinova_bota_adapt_link" >
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -474,25 +474,25 @@
       <parent link="${prefix}end_effector_link" />
       <child link="kinova_bota_adapt_link" />
       <axis xyz="0 0 0" />
-    </joint>
+    </joint> -->
     <!-- Bota sensor -->
-    <link name="robot_mounting_link" />
+    <!-- <link name="robot_mounting_link" />
     <joint name="robot_mounting_joint" type="fixed">
         <parent link="kinova_bota_adapt_link" />
         <child link = "robot_mounting_link" />
         <origin xyz="0.0 0.0 0.016" rpy="0.0 0.0 0.0" />
     </joint>
-    <xacro:arg name="bota_ft_sensor_link_name" default="bota_ft_sensor" />
+    <xacro:arg name="bota_ft_sensor_link_name" default="bota_ft_sensor" /> -->
     <!-- SensONE GEN0 EtherCAT -->
-    <xacro:include filename="file://$(find kinova_gen3n7)/bota_urdf/BFT_SENS_ECAT_M8.urdf.xacro" />
+    <!-- <xacro:include filename="$(find kinova_gen3n7)/bota_urdf/BFT_SENS_ECAT_M8.urdf.xacro" />
     <xacro:BFT_SENS_ECAT_M8 prefix="$(arg bota_ft_sensor_link_name)" />  
     <joint name="robot_mounting_link_to_bota_ft_sensor" type="fixed">
         <parent link="robot_mounting_link" />
         <child link = "$(arg bota_ft_sensor_link_name)_mounting" />
         <origin xyz="0 0 0" rpy="0.0 0.0 ${-PI}" />
-    </joint>
+    </joint> -->
     <!-- Bota to Scoop adapt -->
-    <link name="bota_scoop_adapt_link" >
+    <!-- <link name="bota_scoop_adapt_link" >
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -514,7 +514,7 @@
       <parent link="$(arg bota_ft_sensor_link_name)_wrench" />
       <child link="bota_scoop_adapt_link" />
       <axis xyz="0 0 0" />
-    </joint>
+    </joint> -->
     <!-- Scoop Link -->
     <link name="${prefix}spacer_scoop_link">
       <visual>
@@ -534,8 +534,8 @@
       </collision>
     </link>
     <joint name="${prefix}spacer_scoop_joint" type="fixed">
-      <origin xyz="0 0 0.018" rpy="0 0 0" />
-      <parent link="bota_scoop_adapt_link" />
+      <origin xyz="0 0 0" rpy="0 0 ${-PI}" />
+      <parent link="${prefix}end_effector_link" />
       <child link="${prefix}spacer_scoop_link" />
       <axis xyz="0 0 0" />
     </joint>
